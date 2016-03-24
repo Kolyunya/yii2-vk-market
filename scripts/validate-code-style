@@ -1,0 +1,16 @@
+#!/bin/sh
+vendor/bin/phpcs \
+    --report=full \
+    --severity=1 \
+    --encoding=UTF-8 \
+    --standard=PSR2 \
+    actions \
+    components \
+    configurations \
+    controllers \
+    filters \
+    listeners \
+    models \
+    proxies \
+    responses \
+    web \

@@ -1,0 +1,23 @@
+{
+    "name": "kolyunya/yii2-vk-market",
+    "description": "Yii2 market server for vk.com applications.",
+    "keywords": [
+        "yii2",
+        "vk",
+        "vk.com",
+        "vkontakte",
+        "vkontakte.ru",
+        "market"
+    ],
+    "homepage": "https://github.com/Kolyunya/yii2-vk-market",
+    "type": "project",
+    "license": "GNU GPL v3.0",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.5"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
+    }
+}
