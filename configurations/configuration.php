@@ -25,6 +25,9 @@ return [
                 ],
             ],
         ],
+        'errorHandler' => [
+            'class' => 'app\components\ErrorHandler',
+        ],
         'requestParser' => [
             'class' => 'app\components\RequestParser',
         ],
