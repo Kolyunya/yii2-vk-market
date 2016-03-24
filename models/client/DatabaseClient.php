@@ -14,7 +14,7 @@ class DatabaseClient extends ActiveRecord implements ClientInterface
     /**
      * @const string
      */
-    const TABLE_NAME = 'client';
+    const TABLE_NAME = 'clients';
 
     /**
      * @const string
