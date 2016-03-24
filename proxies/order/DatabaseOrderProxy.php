@@ -28,10 +28,22 @@ class DatabaseOrderProxy extends BaseOrderProxy
     public function createOrder($orderId, $client, $product)
     {
         $order = new DatabaseOrder();
-        $order->platform_id = $orderId;
-        $order->player_id = $client->getLocalId();
-        $order->good_id = $product->getId();
-        $order->paid_at = date("Y-m-d H:i:s");
+        $order->setAttribute(
+            DatabaseOrder::PLATFORM_ID_KEY,
+            $orderId
+        );
+        $order->setAttribute(
+            DatabaseOrder::CLIENT_ID_KEY,
+            $client->getLocalId()
+        );
+        $order->setAttribute(
+            DatabaseOrder::PRODUCT_ID_KEY,
+            $product->getId()
+        );
+        $order->setAttribute(
+            DatabaseOrder::PAID_AT_KEY,
+            date('Y-m-d H:i:s')
+        );
         $order->save();
         return $order;
     }
