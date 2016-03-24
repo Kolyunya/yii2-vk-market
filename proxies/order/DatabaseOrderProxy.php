@@ -2,6 +2,7 @@
 
 namespace app\proxies\order;
 
+use yii\db\Exception;
 use app\models\order\DatabaseOrder;
 use app\proxies\order\BaseOrderProxy;
 
@@ -44,7 +45,9 @@ class DatabaseOrderProxy extends BaseOrderProxy
             DatabaseOrder::PAID_AT_KEY,
             date('Y-m-d H:i:s')
         );
-        $order->save();
+        if (!$order->save()) {
+            throw new Exception('Could not save order.');
+        }
         return $order;
     }
 }
