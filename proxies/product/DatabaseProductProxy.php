@@ -12,22 +12,12 @@ use app\proxies\product\BaseProductProxy;
 class DatabaseProductProxy extends BaseProductProxy
 {
     /**
-     * @var string
-     */
-    const PRODUCT_ID_KEY = 'id';
-
-    /**
-     * @var string
-     */
-    const PRODUCT_NAME_KEY = 'name';
-
-    /**
      * @inheritdoc
      */
     public function getProductById($id)
     {
         $product = DatabaseProduct::findOne([
-            self::PRODUCT_ID_KEY => $id
+            DatabaseProduct::ID_KEY => $id
         ]);
         return $product;
     }
@@ -38,7 +28,7 @@ class DatabaseProductProxy extends BaseProductProxy
     public function getProductByName($name)
     {
         $product = DatabaseProduct::findOne([
-            self::PRODUCT_NAME_KEY => $name
+            DatabaseProduct::NAME_KEY => $name
         ]);
         return $product;
     }

@@ -12,17 +12,12 @@ use app\proxies\order\BaseOrderProxy;
 class DatabaseOrderProxy extends BaseOrderProxy
 {
     /**
-     * @const string
-     */
-    const ORDER_PLATFORM_ID_KEY = 'platform_id';
-
-    /**
      * @inheritdoc
      */
     public function getOrderByPlatformId($platformId)
     {
         $order = DatabaseOrder::findOne([
-            self::ORDER_PLATFORM_ID_KEY => $platformId
+            DatabaseOrder::PLATFORM_ID_KEY => $platformId
         ]);
         return $order;
     }

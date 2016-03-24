@@ -12,17 +12,12 @@ use app\proxies\client\BaseClientProxy;
 class DatabaseClientProxy extends BaseClientProxy
 {
     /**
-     * @const string
-     */
-    const CLIENT_PLATFORM_ID_KEY = 'platform_id';
-
-    /**
      * @inheritdoc
      */
     public function getClientByPlatformId($platformId)
     {
         $client = DatabaseClient::findOne([
-            self::CLIENT_PLATFORM_ID_KEY => $platformId
+            DatabaseClient::PLATFORM_ID_KEY => $platformId
         ]);
         return $client;
     }
