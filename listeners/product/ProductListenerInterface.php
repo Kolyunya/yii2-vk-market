@@ -13,22 +13,26 @@ interface ProductListenerInterface
 {
     /**
      * Called before product info was requested.
-     * @param ClientInterface $client Client.
+     * @param ClientInterface $sender Product sender.
+     * @param ClientInterface $receiver Product receiver.
      * @param ProductInterface $product Product.
      * @return boolean Whether to respond to the request or not.
      */
     public function beforeInfoRequest(
-        ClientInterface $client,
+        ClientInterface $sender,
+        ClientInterface $receiver,
         ProductInterface $product
     );
 
     /**
      * Called after product info was requested.
-     * @param ClientInterface $client Client.
+     * @param ClientInterface $sender Product sender.
+     * @param ClientInterface $receiver Product receiver.
      * @param ProductInterface $product Product.
      */
     public function afterInfoRequest(
-        ClientInterface $client,
+        ClientInterface $sender,
+        ClientInterface $receiver,
         ProductInterface $product
     );
 }

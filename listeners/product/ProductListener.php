@@ -17,7 +17,8 @@ class ProductListener extends Component implements ProductListenerInterface
      * @inheritdoc
      */
     public function beforeInfoRequest(
-        ClientInterface $client,
+        ClientInterface $sender,
+        ClientInterface $receiver,
         ProductInterface $product
     ) {
         // Put your code here
@@ -29,7 +30,8 @@ class ProductListener extends Component implements ProductListenerInterface
      * @inheritdoc
      */
     public function afterInfoRequest(
-        ClientInterface $client,
+        ClientInterface $sender,
+        ClientInterface $receiver,
         ProductInterface $product
     ) {
         // Put your code here

@@ -14,10 +14,16 @@ use app\responses\success\ProductInfoResponse;
 class GetAction extends BaseAction
 {
     /**
-     * Client requested the product.
+     * Order sender.
      * @var ClientInterface
      */
-    private $client;
+    private $sender;
+
+    /**
+     * Order receiver.
+     * @var ClientInterface
+     */
+    private $receiver;
 
     /**
      * Requested product.
@@ -31,7 +37,7 @@ class GetAction extends BaseAction
     public function init()
     {
         parent::init();
-        $this->initializeClient();
+        $this->initializeClients();
         $this->initializeProduct();
     }
 
@@ -50,7 +56,8 @@ class GetAction extends BaseAction
     protected function beforeRun()
     {
         $success = Yii::$app->productListener->beforeInfoRequest(
-            $this->client,
+            $this->sender,
+            $this->receiver,
             $this->product
         );
         if ($success === false) {
@@ -66,7 +73,8 @@ class GetAction extends BaseAction
     protected function afterRun()
     {
         Yii::$app->productListener->afterInfoRequest(
-            $this->client,
+            $this->sender,
+            $this->receiver,
             $this->product
         );
         parent::afterRun();
@@ -75,10 +83,11 @@ class GetAction extends BaseAction
     /**
      * Initializes client requested a product.
      */
-    private function initializeClient()
+    private function initializeClients()
     {
         $clientProxy = Yii::$app->clientProxy;
-        $this->client = $clientProxy->getCurrentSender();
+        $this->sender = $clientProxy->getCurrentSender();
+        $this->receiver = $clientProxy->getCurrentReceiver();
     }
 
     /**
