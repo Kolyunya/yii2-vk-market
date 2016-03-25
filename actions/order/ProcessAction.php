@@ -12,7 +12,7 @@ use app\responses\success\OrderInfoResponse;
  *
  * @author Kolyunya
  */
-class GetInfoAction extends BaseAction
+class ProcessAction extends BaseAction
 {
     /**
      * Order sender.

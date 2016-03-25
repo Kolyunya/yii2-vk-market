@@ -14,7 +14,7 @@ class IndexAction extends Action
     /**
      * @const array
      */
-    const GET_PRODUCT_INFO_REQUEST_TYPE = array(
+    const GET_PRODUCT_REQUEST_TYPE = array(
         'get_item',
         'get_item_test',
     );
@@ -22,7 +22,7 @@ class IndexAction extends Action
     /**
      * @const array
      */
-    const GET_ORDER_INFO_REQUEST_TYPE = array(
+    const PROCESS_ORDER_REQUEST_TYPE = array(
         'order_status_change',
         'order_status_change_test',
     );
@@ -32,36 +32,36 @@ class IndexAction extends Action
      */
     public function run()
     {
-        if ($this->isGetProductInfoRequest()) {
-            return $this->controller->run('product/get-info');
-        } elseif ($this->isGetOrderInfoRequest()) {
-            return $this->controller->run('order/get-info');
+        if ($this->isGetProductRequest()) {
+            return $this->controller->run('product/get');
+        } elseif ($this->isProcessOrderRequest()) {
+            return $this->controller->run('order/process');
         }
     }
 
     /**
      * @return boolean
      */
-    private function isGetProductInfoRequest()
+    private function isGetProductRequest()
     {
         $requestType = Yii::$app->requestParser->getRequestType();
-        $isGetProductInfoRequest = in_array(
+        $isGetProductRequest = in_array(
             $requestType,
-            self::GET_PRODUCT_INFO_REQUEST_TYPE
+            self::GET_PRODUCT_REQUEST_TYPE
         );
-        return $isGetProductInfoRequest;
+        return $isGetProductRequest;
     }
 
     /**
      * @return boolean
      */
-    private function isGetOrderInfoRequest()
+    private function isProcessOrderRequest()
     {
         $requestType = Yii::$app->requestParser->getRequestType();
-        $isGetOrderInfoRequest = in_array(
+        $isProcessOrderRequest = in_array(
             $requestType,
-            self::GET_ORDER_INFO_REQUEST_TYPE
+            self::PROCESS_ORDER_REQUEST_TYPE
         );
-        return $isGetOrderInfoRequest;
+        return $isProcessOrderRequest;
     }
 }

@@ -11,7 +11,7 @@ use app\responses\success\ProductInfoResponse;
  *
  * @author Kolyunya
  */
-class GetInfoAction extends BaseAction
+class GetAction extends BaseAction
 {
     /**
      * Client requested the product.

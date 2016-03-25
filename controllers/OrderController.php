@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use yii\helpers\ArrayHelper;
-use app\actions\order\GetInfoAction;
+use app\actions\order\ProcessAction;
 use app\controllers\BaseController;
 use app\filters\order\OrderStatusFilter;
 use app\filters\product\ProductValidityFilter;
@@ -20,7 +20,7 @@ class OrderController extends BaseController
     public function actions()
     {
         return [
-            'get-info' => GetInfoAction::className(),
+            'process' => ProcessAction::className(),
         ];
     }
 

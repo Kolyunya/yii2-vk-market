@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\actions\product\GetInfoAction;
+use app\actions\product\GetAction;
 use app\controllers\BaseController;
 
 /**
@@ -17,7 +17,7 @@ class ProductController extends BaseController
     public function actions()
     {
         return [
-            'get-info' => GetInfoAction::className(),
+            'get' => GetAction::className(),
         ];
     }
 }
