@@ -18,7 +18,7 @@ interface ProductListenerInterface
      * @param ProductInterface $product Product.
      * @return boolean Whether to respond to the request or not.
      */
-    public function beforeInfoRequest(
+    public function beforeRequest(
         ClientInterface $sender,
         ClientInterface $receiver,
         ProductInterface $product
@@ -30,7 +30,7 @@ interface ProductListenerInterface
      * @param ClientInterface $receiver Product receiver.
      * @param ProductInterface $product Product.
      */
-    public function afterInfoRequest(
+    public function afterRequest(
         ClientInterface $sender,
         ClientInterface $receiver,
         ProductInterface $product

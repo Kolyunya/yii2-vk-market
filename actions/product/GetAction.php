@@ -26,7 +26,7 @@ class GetAction extends BaseAction
      */
     protected function beforeRun()
     {
-        $success = Yii::$app->productListener->beforeInfoRequest(
+        $success = Yii::$app->productListener->beforeRequest(
             $this->sender,
             $this->receiver,
             $this->product
@@ -43,7 +43,7 @@ class GetAction extends BaseAction
      */
     protected function afterRun()
     {
-        Yii::$app->productListener->afterInfoRequest(
+        Yii::$app->productListener->afterRequest(
             $this->sender,
             $this->receiver,
             $this->product
