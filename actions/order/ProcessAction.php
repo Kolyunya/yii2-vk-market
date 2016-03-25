@@ -4,7 +4,6 @@ namespace app\actions\order;
 
 use Yii;
 use app\actions\BaseAction;
-use app\models\client\ClientInterface;
 use app\responses\error\OrderProcessionFailedResponse;
 use app\responses\success\OrderInfoResponse;
 
@@ -14,24 +13,6 @@ use app\responses\success\OrderInfoResponse;
  */
 class ProcessAction extends BaseAction
 {
-    /**
-     * Order sender.
-     * @var ClientInterface
-     */
-    private $sender;
-
-    /**
-     * Order receiver.
-     * @var ClientInterface
-     */
-    private $receiver;
-
-    /**
-     * Requested product.
-     * @var ProductInterface
-     */
-    private $product;
-
     /**
      * Requested order.
      * @var OrderInterface
@@ -44,8 +25,6 @@ class ProcessAction extends BaseAction
     public function init()
     {
         parent::init();
-        $this->initializeClients();
-        $this->initializeProduct();
         $this->initializeOrder();
     }
 
@@ -92,25 +71,6 @@ class ProcessAction extends BaseAction
             $this->order
         );
         parent::afterRun();
-    }
-
-    /**
-     * Initializes client requested a product.
-     */
-    private function initializeClients()
-    {
-        $clientProxy = Yii::$app->clientProxy;
-        $this->sender = $clientProxy->getCurrentSender();
-        $this->receiver = $clientProxy->getCurrentReceiver();
-    }
-
-    /**
-     * Initializes requested product.
-     */
-    private function initializeProduct()
-    {
-        $productProxy = Yii::$app->productProxy;
-        $this->product = $productProxy->getCurrentProduct();
     }
 
     /**

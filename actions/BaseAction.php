@@ -13,6 +13,34 @@ use app\responses\error\CommonErrorResponse;
 abstract class BaseAction extends Action
 {
     /**
+     * Order sender.
+     * @var ClientInterface
+     */
+    protected $sender;
+
+    /**
+     * Order receiver.
+     * @var ClientInterface
+     */
+    protected $receiver;
+
+    /**
+     * Requested product.
+     * @var ProductInterface
+     */
+    protected $product;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        $this->initializeClients();
+        $this->initializeProduct();
+    }
+
+    /**
      * @inheritdoc
      */
     public function run()
@@ -35,4 +63,23 @@ abstract class BaseAction extends Action
      * @return ResponseInterface Response.
      */
     abstract protected function getResponse();
+
+    /**
+     * Initializes client requested a product.
+     */
+    private function initializeClients()
+    {
+        $clientProxy = Yii::$app->clientProxy;
+        $this->sender = $clientProxy->getCurrentSender();
+        $this->receiver = $clientProxy->getCurrentReceiver();
+    }
+
+    /**
+     * Initializes requested product.
+     */
+    private function initializeProduct()
+    {
+        $productProxy = Yii::$app->productProxy;
+        $this->product = $productProxy->getCurrentProduct();
+    }
 }
