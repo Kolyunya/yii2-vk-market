@@ -8,7 +8,7 @@ use app\responses\error\InvalidClientResponse;
 
 /**
  * This filter ensures that request type is supported.
- * 
+ *
  * @author Kolyunya
  */
 class ClientFilter extends BaseFilter
@@ -34,8 +34,7 @@ class ClientFilter extends BaseFilter
      */
     private function validateClientExistence()
     {
-        $clientId = Yii::$app->requestParser->getClientId();
-        $client = Yii::$app->clientProxy->getClientByPlatformId($clientId);
+        $client = Yii::$app->clientProxy->getCurrentClient();
         $clientExists = $client !== null;
         return $clientExists;
     }
@@ -47,8 +46,7 @@ class ClientFilter extends BaseFilter
      */
     private function validateReceiverExistence()
     {
-        $receiverId = Yii::$app->requestParser->getReceiverId();
-        $receiver = Yii::$app->clientProxy->getClientByPlatformId($receiverId);
+        $receiver = Yii::$app->clientProxy->getCurrentReceiver();
         $receiverExists = $receiver !== null;
         return $receiverExists;
     }

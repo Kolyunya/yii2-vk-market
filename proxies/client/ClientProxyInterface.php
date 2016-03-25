@@ -15,6 +15,12 @@ interface ClientProxyInterface
     public function getCurrentClient();
 
     /**
+     * Returns current receiver.
+     * @return ClientInterface Receiver.
+     */
+    public function getCurrentReceiver();
+
+    /**
      * Returns client by his platform id.
      * @param integer $platformId
      * @return ClientInterface Client.
