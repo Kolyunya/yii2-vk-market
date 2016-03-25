@@ -15,10 +15,16 @@ use app\responses\success\OrderInfoResponse;
 class GetInfoAction extends BaseAction
 {
     /**
-     * Client requested the product.
+     * Order sender.
      * @var ClientInterface
      */
-    private $client;
+    private $sender;
+
+    /**
+     * Order receiver.
+     * @var ClientInterface
+     */
+    private $receiver;
 
     /**
      * Requested product.
@@ -38,7 +44,7 @@ class GetInfoAction extends BaseAction
     public function init()
     {
         parent::init();
-        $this->initializeClient();
+        $this->initializeClients();
         $this->initializeProduct();
         $this->initializeOrder();
     }
@@ -62,7 +68,8 @@ class GetInfoAction extends BaseAction
     protected function beforeRun()
     {
         $success = Yii::$app->orderListener->beforeOrderProcession(
-            $this->client,
+            $this->sender,
+            $this->receiver,
             $this->product,
             $this->order
         );
@@ -79,7 +86,8 @@ class GetInfoAction extends BaseAction
     protected function afterRun()
     {
         Yii::$app->orderListener->afterOrderProcession(
-            $this->client,
+            $this->sender,
+            $this->receiver,
             $this->product,
             $this->order
         );
@@ -89,10 +97,11 @@ class GetInfoAction extends BaseAction
     /**
      * Initializes client requested a product.
      */
-    private function initializeClient()
+    private function initializeClients()
     {
         $clientProxy = Yii::$app->clientProxy;
-        $this->client = $clientProxy->getCurrentClient();
+        $this->sender = $clientProxy->getCurrentSender();
+        $this->receiver = $clientProxy->getCurrentReceiver();
     }
 
     /**
@@ -115,7 +124,8 @@ class GetInfoAction extends BaseAction
         if ($this->order === null) {
             $this->order = $orderProxy->createOrder(
                 $orderId,
-                $this->client,
+                $this->sender,
+                $this->receiver,
                 $this->product
             );
         }

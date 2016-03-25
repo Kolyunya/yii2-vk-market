@@ -19,9 +19,14 @@ interface OrderInterface
     public function getPlatformId();
 
     /**
-     * @return integer Client id.
+     * @return integer Sender id.
      */
-    public function getClientId();
+    public function getSenderId();
+
+    /**
+     * @return integer Receiver id.
+     */
+    public function getReceiverId();
 
     /**
      * @return integer Product id.

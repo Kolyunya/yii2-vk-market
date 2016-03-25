@@ -18,9 +18,10 @@ interface OrderProxyInterface
     /**
      * Saves order.
      * @param integer $orderId
-     * @param ClientInterface $client
+     * @param ClientInterface $sender
+     * @param ClientInterface $receiver
      * @param ProductInterface $product
      * @return OrderInterface Order.
      */
-    public function createOrder($orderId, $client, $product);
+    public function createOrder($orderId, $sender, $receiver, $product);
 }

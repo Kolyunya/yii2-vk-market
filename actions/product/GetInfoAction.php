@@ -78,7 +78,7 @@ class GetInfoAction extends BaseAction
     private function initializeClient()
     {
         $clientProxy = Yii::$app->clientProxy;
-        $this->client = $clientProxy->getCurrentClient();
+        $this->client = $clientProxy->getCurrentSender();
     }
 
     /**

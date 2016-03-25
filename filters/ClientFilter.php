@@ -7,7 +7,7 @@ use app\filters\BaseFilter;
 use app\responses\error\InvalidClientResponse;
 
 /**
- * This filter ensures that request type is supported.
+ * This filter ensures that sender and receiver exist.
  *
  * @author Kolyunya
  */
@@ -18,9 +18,9 @@ class ClientFilter extends BaseFilter
      */
     public function beforeAction($action)
     {
-        $clientExists = $this->validateClientExistence();
+        $senderExists = $this->validateSenderExistence();
         $receiverExists = $this->validateReceiverExistence();
-        $usersExist = $clientExists && $receiverExists;
+        $usersExist = $senderExists && $receiverExists;
         if ($usersExist === false) {
             $this->sendInvalidClientResponse();
         }
@@ -28,15 +28,15 @@ class ClientFilter extends BaseFilter
     }
 
     /**
-     * Indicates whether the client exists.
-     * @return boolean Returns true if the client exists.
+     * Indicates whether the sender exists.
+     * @return boolean Returns true if the sender exists.
      *                 Returns false otherwise.
      */
-    private function validateClientExistence()
+    private function validateSenderExistence()
     {
-        $client = Yii::$app->clientProxy->getCurrentClient();
-        $clientExists = $client !== null;
-        return $clientExists;
+        $sender = Yii::$app->clientProxy->getCurrentSender();
+        $senderExists = $sender !== null;
+        return $senderExists;
     }
 
     /**

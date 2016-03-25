@@ -18,7 +18,8 @@ class OrderListener extends Component implements OrderListenerInterface
      * @inheritdoc
      */
     public function beforeOrderProcession(
-        ClientInterface $client,
+        ClientInterface $sender,
+        ClientInterface $receiver,
         ProductInterface $product,
         OrderInterface $order
     ) {
@@ -31,7 +32,8 @@ class OrderListener extends Component implements OrderListenerInterface
      * @inheritdoc
      */
     public function afterOrderProcession(
-        ClientInterface $client,
+        ClientInterface $sender,
+        ClientInterface $receiver,
         ProductInterface $product,
         OrderInterface $order
     ) {

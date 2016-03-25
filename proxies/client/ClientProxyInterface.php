@@ -9,14 +9,14 @@ namespace app\proxies\client;
 interface ClientProxyInterface
 {
     /**
-     * Returns current client.
-     * @return ClientInterface Client.
+     * Returns current sender.
+     * @return ClientInterface Current sender.
      */
-    public function getCurrentClient();
+    public function getCurrentSender();
 
     /**
      * Returns current receiver.
-     * @return ClientInterface Receiver.
+     * @return ClientInterface Current receiver.
      */
     public function getCurrentReceiver();
 

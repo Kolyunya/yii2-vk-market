@@ -29,7 +29,12 @@ class DatabaseOrder extends ActiveRecord implements OrderInterface
     /**
      * @const string
      */
-    const CLIENT_ID_KEY = 'client_id';
+    const SENDER_ID_KEY = 'sender_id';
+
+    /**
+     * @const string
+     */
+    const RECEIVER_ID_KEY = 'receiver_id';
 
     /**
      * @const string
@@ -68,9 +73,17 @@ class DatabaseOrder extends ActiveRecord implements OrderInterface
     /**
      * @inheritdoc
      */
-    public function getClientId()
+    public function getSenderId()
     {
-        return $this->getAttribute(self::CLIENT_ID_KEY);
+        return $this->getAttribute(self::SENDER_ID_KEY);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getReceiverId()
+    {
+        return $this->getAttribute(self::RECEIVER_ID_KEY);
     }
 
     /**

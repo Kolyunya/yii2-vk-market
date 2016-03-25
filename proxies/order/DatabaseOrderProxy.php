@@ -26,7 +26,7 @@ class DatabaseOrderProxy extends BaseOrderProxy
     /**
      * @inheritdoc
      */
-    public function createOrder($orderId, $client, $product)
+    public function createOrder($orderId, $sender, $receiver, $product)
     {
         $order = new DatabaseOrder();
         $order->setAttribute(
@@ -34,8 +34,12 @@ class DatabaseOrderProxy extends BaseOrderProxy
             $orderId
         );
         $order->setAttribute(
-            DatabaseOrder::CLIENT_ID_KEY,
-            $client->getLocalId()
+            DatabaseOrder::SENDER_ID_KEY,
+            $sender->getLocalId()
+        );
+        $order->setAttribute(
+            DatabaseOrder::RECEIVER_ID_KEY,
+            $receiver->getLocalId()
         );
         $order->setAttribute(
             DatabaseOrder::PRODUCT_ID_KEY,

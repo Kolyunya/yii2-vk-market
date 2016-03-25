@@ -13,10 +13,10 @@ use app\proxies\client\ClientProxyInterface;
 abstract class BaseClientProxy extends Component implements ClientProxyInterface
 {
     /**
-     * Current client.
+     * Current sender.
      * @var ClientInterface
      */
-    private $client;
+    private $sender;
 
     /**
      * Current receiver.
@@ -27,13 +27,13 @@ abstract class BaseClientProxy extends Component implements ClientProxyInterface
     /**
      * @inheritdoc
      */
-    public function getCurrentClient()
+    public function getCurrentSender()
     {
-        if ($this->client === null) {
-            $clientId = Yii::$app->requestParser->getClientId();
-            $this->client = $this->getClientByPlatformId($clientId);
+        if ($this->sender === null) {
+            $senderId = Yii::$app->requestParser->getSenderId();
+            $this->sender = $this->getClientByPlatformId($senderId);
         }
-        return $this->client;
+        return $this->sender;
     }
 
     /**

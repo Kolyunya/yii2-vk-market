@@ -24,7 +24,7 @@ class RequestParser extends Component
     /**
      * @const integer
      */
-    const CLIENT_ID_KEY = 'user_id';
+    const SENDER_ID_KEY = 'user_id';
 
     /**
      * @const string
@@ -102,12 +102,12 @@ class RequestParser extends Component
     /**
      * @return integer Client id.
      */
-    public function getClientId()
+    public function getSenderId()
     {
-        $clientIdKey = self::CLIENT_ID_KEY;
-        $clientIdString = $this->getParameter($clientIdKey);
-        $clientId = intval($clientIdString);
-        return $clientId;
+        $senderIdKey = self::SENDER_ID_KEY;
+        $senderIdString = $this->getParameter($senderIdKey);
+        $senderId = intval($senderIdString);
+        return $senderId;
     }
 
     /**
