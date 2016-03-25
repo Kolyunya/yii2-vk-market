@@ -20,7 +20,7 @@ interface OrderListenerInterface
      * @param OrderInterface $order
      * @return boolean Whether to respond to the request or not.
      */
-    public function beforeOrderProcession(
+    public function beforeProcession(
         ClientInterface $sender,
         ClientInterface $receiver,
         ProductInterface $product,
@@ -34,7 +34,7 @@ interface OrderListenerInterface
      * @param ProductInterface $product
      * @param OrderInterface $order
      */
-    public function afterOrderProcession(
+    public function afterProcession(
         ClientInterface $sender,
         ClientInterface $receiver,
         ProductInterface $product,

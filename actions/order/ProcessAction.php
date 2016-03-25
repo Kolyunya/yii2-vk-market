@@ -46,7 +46,7 @@ class ProcessAction extends BaseAction
      */
     protected function beforeRun()
     {
-        $success = Yii::$app->orderListener->beforeOrderProcession(
+        $success = Yii::$app->orderListener->beforeProcession(
             $this->sender,
             $this->receiver,
             $this->product,
@@ -64,7 +64,7 @@ class ProcessAction extends BaseAction
      */
     protected function afterRun()
     {
-        Yii::$app->orderListener->afterOrderProcession(
+        Yii::$app->orderListener->afterProcession(
             $this->sender,
             $this->receiver,
             $this->product,
