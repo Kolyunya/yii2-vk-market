@@ -32,8 +32,7 @@ class ProductExistenceFilter extends BaseFilter
      */
     private function validateProductExistence()
     {
-        $productName = Yii::$app->requestParser->getProductName();
-        $product = Yii::$app->productProxy->getProductByName($productName);
+        $product = Yii::$app->productProxy->getCurrentProduct();
         $productExists = $product !== null;
         return $productExists;
     }
