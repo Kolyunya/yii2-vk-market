@@ -25,7 +25,7 @@ class CommonErrorResponse extends ErrorResponse
      * Constructs a common error response.
      * @param string $message Error message.
      */
-    public function __construct($message = self::DEFAULT_MESSAGE)
+    public function __construct($message = null)
     {
         $this->message = $message;
     }
@@ -44,7 +44,11 @@ class CommonErrorResponse extends ErrorResponse
      */
     protected function getMessage()
     {
-        $message = $this->message;
+        if ($this->message === null) {
+            $message = self::DEFAULT_MESSAGE;
+        } else {
+            $message = $this->message;
+        }
         return $message;
     }
 
