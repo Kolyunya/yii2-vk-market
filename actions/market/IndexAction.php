@@ -44,7 +44,7 @@ class IndexAction extends Action
      */
     private function isGetProductRequest()
     {
-        $requestType = Yii::$app->requestParser->getRequestType();
+        $requestType = Yii::$app->request->getRequestType();
         $isGetProductRequest = in_array(
             $requestType,
             self::GET_PRODUCT_REQUEST_TYPE
@@ -57,7 +57,7 @@ class IndexAction extends Action
      */
     private function isProcessOrderRequest()
     {
-        $requestType = Yii::$app->requestParser->getRequestType();
+        $requestType = Yii::$app->request->getRequestType();
         $isProcessOrderRequest = in_array(
             $requestType,
             self::PROCESS_ORDER_REQUEST_TYPE

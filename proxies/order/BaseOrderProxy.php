@@ -34,10 +34,10 @@ abstract class BaseOrderProxy extends Component implements OrderProxyInterface
      */
     private function initializeOrder()
     {
-        $orderId = Yii::$app->requestParser->getOrderId();
+        $orderId = Yii::$app->request->getOrderId();
         $this->order = $this->getOrderByPlatformId($orderId);
         if ($this->order === null) {
-            $orderId = Yii::$app->requestParser->getOrderId();
+            $orderId = Yii::$app->request->getOrderId();
             $sender = Yii::$app->clientProxy->getCurrentSender();
             $receiver = Yii::$app->clientProxy->getCurrentReceiver();
             $product = Yii::$app->productProxy->getCurrentProduct();

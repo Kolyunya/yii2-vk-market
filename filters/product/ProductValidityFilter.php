@@ -33,9 +33,9 @@ class ProductValidityFilter extends BaseFilter
     private function validateProduct()
     {
         $product = Yii::$app->productProxy->getCurrentProduct();
-        $productIdIsValid = $product->getId() === Yii::$app->requestParser->getProductId();
-        $productNameIsValid = $product->getName() === Yii::$app->requestParser->getProductName();
-        $productPriceIsValid = $product->getPrice() === Yii::$app->requestParser->getProductPrice();
+        $productIdIsValid = $product->getId() === Yii::$app->request->getProductId();
+        $productNameIsValid = $product->getName() === Yii::$app->request->getProductName();
+        $productPriceIsValid = $product->getPrice() === Yii::$app->request->getProductPrice();
         $productIsValid = $productIdIsValid && $productNameIsValid && $productPriceIsValid;
         return $productIsValid;
     }

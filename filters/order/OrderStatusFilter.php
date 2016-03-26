@@ -39,7 +39,7 @@ class OrderStatusFilter extends BaseFilter
      */
     private function validateOrderStatus()
     {
-        $orderStatus = Yii::$app->requestParser->getOrderStatus();
+        $orderStatus = Yii::$app->request->getOrderStatus();
         $orderStatuses = self::VALID_ORDER_STATUSES;
         $orderStatusIsValid = in_array($orderStatus, $orderStatuses);
         return $orderStatusIsValid;

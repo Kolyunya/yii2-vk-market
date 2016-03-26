@@ -3,7 +3,7 @@
 namespace app\filters;
 
 use Yii;
-use app\components\RequestParser;
+use app\components\Request;
 use app\filters\BaseFilter;
 use app\responses\error\InvalidSignatureResponse;
 
@@ -49,7 +49,7 @@ class SignatureFilter extends BaseFilter
      */
     private function getReceivedSignature()
     {
-        $receivedSignature = Yii::$app->requestParser->getRequestSignature();
+        $receivedSignature = Yii::$app->request->getRequestSignature();
         return $receivedSignature;
     }
 
@@ -59,8 +59,8 @@ class SignatureFilter extends BaseFilter
     private function getCorrectSignature()
     {
         // Request signature should be removed before calculation.
-        $payload = Yii::$app->requestParser->getPayload();
-        $signatureKey = RequestParser::REQUEST_SIGNATURE_KEY;
+        $payload = Yii::$app->request->getPayload();
+        $signatureKey = Request::REQUEST_SIGNATURE_KEY;
         unset($payload[$signatureKey]);
         ksort($payload);
 

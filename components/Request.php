@@ -3,13 +3,12 @@
 namespace app\components;
 
 use Yii;
-use yii\base\Component;
 
 /**
  *
  * @author Kolyunya
  */
-class RequestParser extends Component
+class Request extends \yii\web\Request
 {
     /**
      * @const string
@@ -67,7 +66,8 @@ class RequestParser extends Component
      */
     public function init()
     {
-        $this->initializePayload();
+        parent::init();
+       $this->initializePayload();
     }
 
     /**
@@ -179,9 +179,7 @@ class RequestParser extends Component
      */
     private function initializePayload()
     {
-        $application = Yii::$app;
-        $request = $application->request;
-        $this->payload = $request->post();
+        $this->payload = $this->post();
     }
 
     /**

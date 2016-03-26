@@ -12,6 +12,7 @@ return [
     'defaultRoute' => 'market/index',
     'components' => [
         'request' => [
+            'class' => 'app\components\Request',
             'enableCookieValidation' => false,
             'enableCsrfCookie' => false,
             'enableCsrfValidation' => false,

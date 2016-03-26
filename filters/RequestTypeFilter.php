@@ -44,7 +44,7 @@ class RequestTypeFilter extends BaseFilter
     private function validateRequestType()
     {
         $supportedArrayTypes = self::SUPPORTED_REQUEST_TYPES;
-        $requestType = Yii::$app->requestParser->getRequestType();
+        $requestType = Yii::$app->request->getRequestType();
         $requestTypeIsSupported = in_array($requestType, $supportedArrayTypes);
         return $requestTypeIsSupported;
     }

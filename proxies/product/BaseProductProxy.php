@@ -24,7 +24,7 @@ abstract class BaseProductProxy extends Component implements ProductProxyInterfa
     public function getCurrentProduct()
     {
         if ($this->product === null) {
-            $productName = Yii::$app->requestParser->getProductName();
+            $productName = Yii::$app->request->getProductName();
             $this->product = $this->getProductByName($productName);
         }
         return $this->product;

@@ -30,7 +30,7 @@ abstract class BaseClientProxy extends Component implements ClientProxyInterface
     public function getCurrentSender()
     {
         if ($this->sender === null) {
-            $senderId = Yii::$app->requestParser->getSenderId();
+            $senderId = Yii::$app->request->getSenderId();
             $this->sender = $this->getClientByPlatformId($senderId);
         }
         return $this->sender;
@@ -42,7 +42,7 @@ abstract class BaseClientProxy extends Component implements ClientProxyInterface
     public function getCurrentReceiver()
     {
         if ($this->receiver === null) {
-            $receiverId = Yii::$app->requestParser->getReceiverId();
+            $receiverId = Yii::$app->request->getReceiverId();
             $this->receiver = $this->getClientByPlatformId($receiverId);
         }
         return $this->receiver;
