@@ -13,6 +13,21 @@ use app\responses\success\ProductInfoResponse;
 class GetAction extends BaseAction
 {
     /**
+     * Product listener.
+     * @var ProductListenerInterface
+     */
+    private $listener;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        $this->initializeListener();
+    }
+
+    /**
      * @inheritdoc
      */
     protected function getResponse()
@@ -26,7 +41,7 @@ class GetAction extends BaseAction
      */
     protected function beforeRun()
     {
-        $success = Yii::$app->productListener->beforeRequest(
+        $success = $this->listener->beforeRequest(
             $this->sender,
             $this->receiver,
             $this->product
@@ -43,11 +58,19 @@ class GetAction extends BaseAction
      */
     protected function afterRun()
     {
-        Yii::$app->productListener->afterRequest(
+        $this->listener->afterRequest(
             $this->sender,
             $this->receiver,
             $this->product
         );
         parent::afterRun();
+    }
+
+    /**
+     * Initializes product listener.
+     */
+    private function initializeListener()
+    {
+        $this->listener = Yii::$app->productListener;
     }
 }
