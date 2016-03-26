@@ -16,14 +16,8 @@ return [
             'enableCsrfCookie' => false,
             'enableCsrfValidation' => false,
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
+        'response' => [
+            'class' => 'app\components\Response',
         ],
         'errorHandler' => [
             'class' => 'app\components\ErrorHandler',
@@ -37,6 +31,15 @@ return [
         'orderListener' => require(__DIR__ . '/order/listener.php'),
         'clientProxy' => require(__DIR__ . '/client/proxy.php'),
         'db' => require(__DIR__ . '/database/database.php'),
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
     ],
     'params' => require(__DIR__ . '/parameters/parameters.php'),
 ];

@@ -57,6 +57,6 @@ class ClientFilter extends BaseFilter
     private function sendInvalidClientResponse()
     {
         $invalidClientResponse = new InvalidClientResponse();
-        $this->sendResponse($invalidClientResponse);
+        $this->setResponse($invalidClientResponse);
     }
 }

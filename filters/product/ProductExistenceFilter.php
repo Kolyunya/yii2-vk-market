@@ -43,6 +43,6 @@ class ProductExistenceFilter extends BaseFilter
     private function sendInvalidProductResponse()
     {
         $invalidProductResponse = new InvalidProductResponse();
-        $this->sendResponse($invalidProductResponse);
+        $this->setResponse($invalidProductResponse);
     }
 }

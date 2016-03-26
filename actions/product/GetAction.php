@@ -47,7 +47,7 @@ class GetAction extends BaseAction
             $this->product
         );
         if ($success === false) {
-            $this->sendCommonErrorResponse();
+            $this->setCommonErrorResponse();
             return false;
         }
         return parent::beforeRun();

@@ -82,6 +82,6 @@ class SignatureFilter extends BaseFilter
     private function sendInvalidSignatureResponse()
     {
         $invalidSignatureResponse = new InvalidSignatureResponse();
-        $this->sendResponse($invalidSignatureResponse);
+        $this->setResponse($invalidSignatureResponse);
     }
 }

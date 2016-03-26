@@ -51,6 +51,6 @@ class OrderStatusFilter extends BaseFilter
     private function sendInvalidOrderStatusResponse()
     {
         $invalidOrderStatusResponse = new InvalidOrderStatusResponse();
-        $this->sendResponse($invalidOrderStatusResponse);
+        $this->setResponse($invalidOrderStatusResponse);
     }
 }

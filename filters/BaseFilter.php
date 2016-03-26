@@ -15,7 +15,7 @@ class BaseFilter extends ActionFilter
     /**
      * Sends response to the client.
      */
-    protected function sendResponse(ResponseInterface $response)
+    protected function setResponse(ResponseInterface $response)
     {
         Yii::$app->response->content = $response;
     }

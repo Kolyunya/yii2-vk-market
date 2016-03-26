@@ -53,7 +53,7 @@ abstract class BaseAction extends Action
     /**
      * Sends common error response to the client.
      */
-    protected function sendCommonErrorResponse()
+    protected function setCommonErrorResponse()
     {
         $response = new CommonErrorResponse();
         Yii::$app->response->content = $response;

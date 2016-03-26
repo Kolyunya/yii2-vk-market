@@ -61,7 +61,7 @@ class ProcessAction extends BaseAction
             $this->order
         );
         if ($success === false) {
-            $this->sendCommonErrorResponse();
+            $this->setCommonErrorResponse();
             return false;
         }
         return parent::beforeRun();

@@ -55,6 +55,6 @@ class RequestTypeFilter extends BaseFilter
     private function sendInvalidRequestTypeResponse()
     {
         $invalidRequestTypeResponse = new InvalidRequestTypeResponse();
-        $this->sendResponse($invalidRequestTypeResponse);
+        $this->setResponse($invalidRequestTypeResponse);
     }
 }
