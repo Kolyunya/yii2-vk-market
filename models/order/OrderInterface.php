@@ -34,7 +34,18 @@ interface OrderInterface
     public function getProductId();
 
     /**
+     * @return boolean Whether the order is processed or not.
+     */
+    public function isProcessed();
+
+    /**
      * @return integer Payment timestamp.
      */
-    public function getPaidAt();
+    public function getProcessedAt();
+
+    /**
+     * Marks the order as successfully processed.
+     * @return boolean Indicates whether the flag was set successfully or not.
+     */
+    public function setProcessed();
 }

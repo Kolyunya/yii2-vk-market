@@ -44,7 +44,12 @@ class DatabaseOrder extends ActiveRecord implements OrderInterface
     /**
      * @const string
      */
-    const PAID_AT_KEY = 'paid_at';
+    const IS_PROCESSED_KEY = 'is_processed';
+
+    /**
+     * @const string
+     */
+    const PROCESSED_AT_KEY = 'processed_at';
 
     /**
      * @inheritdoc
@@ -97,8 +102,27 @@ class DatabaseOrder extends ActiveRecord implements OrderInterface
     /**
      * @inheritdoc
      */
-    public function getPaidAt()
+    public function isProcessed()
     {
-        return $this->getAttribute(self::PAID_AT_KEY);
+        return $this->getAttribute(self::IS_PROCESSED_KEY);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getProcessedAt()
+    {
+        return $this->getAttribute(self::PROCESSED_AT_KEY);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setProcessed()
+    {
+        $this->setAttribute(self::IS_PROCESSED_KEY, true);
+        $this->setAttribute(self::PROCESSED_AT_KEY, date('Y-m-d H:i:s'));
+        $setSuccessfully = $this->save();
+        return $setSuccessfully;
     }
 }

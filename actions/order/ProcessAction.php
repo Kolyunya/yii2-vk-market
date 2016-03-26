@@ -20,12 +20,19 @@ class ProcessAction extends BaseAction
     private $order;
 
     /**
+     * Order listener.
+     * @var OrderListenerInterface
+     */
+    private $listener;
+
+    /**
      * @inheritdoc
      */
     public function init()
     {
         parent::init();
         $this->initializeOrder();
+        $this->initializeListener();
     }
 
     /**
@@ -33,7 +40,8 @@ class ProcessAction extends BaseAction
      */
     protected function getResponse()
     {
-        if ($this->order === null) {
+        $success = $this->processOrder();
+        if ($success === false) {
             $response = new OrderProcessionFailedResponse();
         } else {
             $response = new OrderInfoResponse($this->order);
@@ -46,7 +54,7 @@ class ProcessAction extends BaseAction
      */
     protected function beforeRun()
     {
-        $success = Yii::$app->orderListener->beforeProcession(
+        $success = $this->listener->beforeProcession(
             $this->sender,
             $this->receiver,
             $this->product,
@@ -64,7 +72,7 @@ class ProcessAction extends BaseAction
      */
     protected function afterRun()
     {
-        Yii::$app->orderListener->afterProcession(
+        $this->listener->afterProcession(
             $this->sender,
             $this->receiver,
             $this->product,
@@ -79,15 +87,47 @@ class ProcessAction extends BaseAction
     private function initializeOrder()
     {
         $orderProxy = Yii::$app->orderProxy;
-        $orderId = Yii::$app->requestParser->getOrderId();
-        $this->order = $orderProxy->getOrderByPlatformId($orderId);
-        if ($this->order === null) {
-            $this->order = $orderProxy->createOrder(
-                $orderId,
-                $this->sender,
-                $this->receiver,
-                $this->product
-            );
+        $this->order = $orderProxy->getCurrentOrder();
+    }
+
+    /**
+     * Initializes order listener
+     */
+    private function initializeListener()
+    {
+        $this->listener = Yii::$app->orderListener;
+    }
+
+    /**
+     * Processes current order.
+     * @return boolean Indicates whether order procession succeeded or not.
+     */
+    private function processOrder()
+    {
+        // Check if order was already processed.
+        $orderIsAlreadyProcessed = $this->order->isProcessed();
+        if ($orderIsAlreadyProcessed === true) {
+            return true;
         }
+
+        // Perform order procession
+        $orderProcessed = $this->listener->process(
+            $this->sender,
+            $this->receiver,
+            $this->product,
+            $this->order
+        );
+        if ($orderProcessed === false) {
+            return false;
+        }
+
+        // Save order processed status
+        $orderStatusSaved = $this->order->setProcessed();
+        if ($orderStatusSaved === false) {
+            return false;
+        }
+
+        // Order processed successfully.
+        return true;
     }
 }

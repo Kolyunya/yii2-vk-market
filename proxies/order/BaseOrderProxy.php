@@ -2,6 +2,7 @@
 
 namespace app\proxies\order;
 
+use Yii;
 use yii\base\Component;
 use app\proxies\order\OrderProxyInterface;
 
@@ -11,5 +12,41 @@ use app\proxies\order\OrderProxyInterface;
  */
 abstract class BaseOrderProxy extends Component implements OrderProxyInterface
 {
+    /**
+     * Current order.
+     * @var OrderInterface
+     */
+    private $order;
 
+    /**
+     * @inheritdoc
+     */
+    public function getCurrentOrder()
+    {
+        if ($this->order === null) {
+            $this->initializeOrder();
+        }
+        return $this->order;
+    }
+
+    /**
+     * Initializes current order.
+     */
+    private function initializeOrder()
+    {
+        $orderId = Yii::$app->requestParser->getOrderId();
+        $this->order = $this->getOrderByPlatformId($orderId);
+        if ($this->order === null) {
+            $orderId = Yii::$app->requestParser->getOrderId();
+            $sender = Yii::$app->clientProxy->getCurrentSender();
+            $receiver = Yii::$app->clientProxy->getCurrentReceiver();
+            $product = Yii::$app->productProxy->getCurrentProduct();
+            $this->order = $this->createOrder(
+                $orderId,
+                $sender,
+                $receiver,
+                $product
+            );
+        }
+    }
 }

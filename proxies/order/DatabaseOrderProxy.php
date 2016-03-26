@@ -46,11 +46,11 @@ class DatabaseOrderProxy extends BaseOrderProxy
             $product->getId()
         );
         $order->setAttribute(
-            DatabaseOrder::PAID_AT_KEY,
-            date('Y-m-d H:i:s')
+            DatabaseOrder::IS_PROCESSED_KEY,
+            false
         );
         if (!$order->save()) {
-            throw new Exception('Could not save order.');
+            throw new Exception('Could not create order.');
         }
         return $order;
     }

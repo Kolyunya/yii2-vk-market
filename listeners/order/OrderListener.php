@@ -31,6 +31,20 @@ class OrderListener extends Component implements OrderListenerInterface
     /**
      * @inheritdoc
      */
+    public function process(
+        ClientInterface $sender,
+        ClientInterface $receiver,
+        ProductInterface $product,
+        OrderInterface $order
+    ) {
+        // Put your code here.
+
+        return true;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function afterProcession(
         ClientInterface $sender,
         ClientInterface $receiver,

@@ -9,6 +9,12 @@ namespace app\proxies\order;
 interface OrderProxyInterface
 {
     /**
+     * Returns current order.
+     * @return OrderInterface Current order.
+     */
+    public function getCurrentOrder();
+
+    /**
      * Retrieves an order by its platform id.
      * @param integer $platformId Order's platform id.
      * @return OrderInterface Order.
