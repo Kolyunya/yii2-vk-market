@@ -16,7 +16,8 @@ class ErrorHandler extends \yii\web\ErrorHandler
      */
     protected function renderException($exception)
     {
-        $response = new CommonErrorResponse();
+        $message = $exception->getMessage();
+        $response = new CommonErrorResponse($message);
         Yii::$app->response->content = $response;
         Yii::$app->response->send();
     }
