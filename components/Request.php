@@ -67,7 +67,7 @@ class Request extends \yii\web\Request
     public function init()
     {
         parent::init();
-       $this->initializePayload();
+        $this->initializePayload();
     }
 
     /**
