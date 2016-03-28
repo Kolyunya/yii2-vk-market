@@ -31,6 +31,11 @@ return [
 #### Database schema
 Above configuration is sufficient for the minimal working example if database schema corresponds the default models implementation. You can inspect default models for further information: [DatabaseClient](https://github.com/Kolyunya/yii2-vk-market/blob/master/models/client/DatabaseClient.php), [DatabaseOrder](https://github.com/Kolyunya/yii2-vk-market/blob/master/models/order/DatabaseOrder.php) and [DatabaseProduct](https://github.com/Kolyunya/yii2-vk-market/blob/master/models/product/DatabaseProduct.php).
 
+#### Event listeners
+Both request types have their event listeners. You should place your application logic inside them:
+* On product get [event listener](https://github.com/Kolyunya/yii2-vk-market/blob/master/listeners/product/ProductListener.php)
+* On order status change [event listener](https://github.com/Kolyunya/yii2-vk-market/blob/master/listeners/order/OrderListener.php)
+
 ### Extended configuration
 
 #### Custom models and proxies
