@@ -1,7 +1,7 @@
 # Yii2 VK market
 
 ## Description
-This is a market server for [vk.com](https://vk.com) applications which uses [Payments API](https://vk.com/dev/payments).
+This is a market server for [vk.com](https://vk.com) applications which processes [payment](https://vk.com/dev/payments) notifications.
 
 ## Configuration
 
